@@ -17,7 +17,7 @@
           <!-- Informações de Contato -->
           <div class="contact-info slide-in-left">
             <div class="info-card card">
-              <h3>Entre em contato</h3>
+              <h3>Converse comigo</h3>
               <p>Estou sempre aberto a discutir novos projetos, ideias ou oportunidades!</p>
 
               <div class="contact-methods">

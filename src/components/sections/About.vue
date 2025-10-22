@@ -19,9 +19,9 @@
             e elegantes.
           </p>
           <p>
-            Quando não estou codando, gosto de [seus hobbies aqui - ex: ler, jogar games, praticar
-            esportes, etc]. Acredito que um bom equilíbrio entre vida pessoal e profissional é
-            fundamental para a criatividade e produtividade.
+            Quando não estou codando, gosto de jogar games, ouvir música e me exercitar. Acredito
+            que um bom equilíbrio entre vida pessoal e profissional é fundamental para viver uma
+            vida produtiva e satisfatoria.
           </p>
 
           <div class="about-stats">
@@ -50,13 +50,43 @@
             <div class="image-overlay"></div>
           </div>
 
-          <div class="tech-tags">
-            <span class="tag">Vue.js</span>
-            <span class="tag">JavaScript</span>
-            <span class="tag">HTML/CSS</span>
-            <span class="tag">Node.js</span>
-            <span class="tag">Git</span>
-            <!-- Adicione suas tecnologias -->
+          <div class="tech-stack">
+            <div class="tech-item" title="JavaScript">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
+                alt="JavaScript"
+              />
+            </div>
+            <div class="tech-item" title="Vue.js">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg"
+                alt="Vue.js"
+              />
+            </div>
+            <div class="tech-item" title="Node.js">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg"
+                alt="Node.js"
+              />
+            </div>
+            <div class="tech-item" title="MongoDB">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg"
+                alt="MongoDB"
+              />
+            </div>
+            <div class="tech-item" title="Flutter">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg"
+                alt="Flutter"
+              />
+            </div>
+            <div class="tech-item" title="Git">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg"
+                alt="Git"
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -159,28 +189,41 @@ export default {
   opacity: 0.1;
 }
 
-.tech-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--spacing-sm);
+.tech-stack {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-md);
   margin-top: var(--spacing-md);
 }
 
-.tag {
+.tech-item {
   background-color: var(--color-bg-base);
-  color: var(--color-primary);
-  padding: 0.5rem 1rem;
-  border-radius: var(--radius-full);
-  font-size: var(--text-sm);
-  font-weight: 600;
-  border: 1px solid var(--color-primary);
+  padding: var(--spacing-md);
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid rgba(109, 158, 235, 0.1);
   transition: all var(--transition-base);
+  cursor: pointer;
 }
 
-.tag:hover {
-  background-color: var(--color-primary);
-  color: var(--color-bg-base);
-  transform: translateY(-2px);
+.tech-item:hover {
+  border-color: var(--color-primary);
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-glow);
+}
+
+.tech-item img {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  filter: grayscale(100%);
+  transition: filter var(--transition-base);
+}
+
+.tech-item:hover img {
+  filter: grayscale(0%);
 }
 
 /* Responsividade */
@@ -209,8 +252,14 @@ export default {
     grid-template-columns: 1fr;
   }
 
-  .tech-tags {
-    justify-content: center;
+  .tech-stack {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-sm);
+  }
+
+  .tech-item img {
+    width: 50px;
+    height: 50px;
   }
 }
 </style>
