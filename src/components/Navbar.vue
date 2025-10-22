@@ -1,14 +1,31 @@
 <template>
   <nav class="navbar" :class="{ 'navbar-hidden': !showNavbar }">
     <div class="container">
-      <a href="#hero" class="logo">Meu Portfólio</a>
-      <ul class="nav-links">
-        <li><a href="#about">Sobre</a></li>
-        <li><a href="#projects">Projetos</a></li>
-        <li><a href="#skills">Habilidades</a></li>
-        <li><a href="#contact">Contato</a></li>
+      <a href="#hero" class="logo" @click="closeMobileMenu">Meu Portfólio</a>
+
+      <!-- Botão Hamburger (visível apenas em mobile) -->
+      <button
+        class="hamburger"
+        :class="{ active: mobileMenuOpen }"
+        @click="toggleMobileMenu"
+        aria-label="Menu"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <!-- Menu de navegação -->
+      <ul class="nav-links" :class="{ 'mobile-open': mobileMenuOpen }">
+        <li><a href="#about" @click="closeMobileMenu">Sobre</a></li>
+        <li><a href="#projects" @click="closeMobileMenu">Projetos</a></li>
+        <li><a href="#skills" @click="closeMobileMenu">Habilidades</a></li>
+        <li><a href="#contact" @click="closeMobileMenu">Contato</a></li>
       </ul>
     </div>
+
+    <!-- Overlay para fechar o menu ao clicar fora (mobile) -->
+    <div v-if="mobileMenuOpen" class="overlay" @click="closeMobileMenu"></div>
   </nav>
 </template>
 
@@ -20,46 +37,41 @@ export default {
     return {
       showNavbar: true,
       lastScrollPosition: 0,
-      scrollThreshold: 50, // Pixels necessários para disparar a ação
+      scrollThreshold: 50,
       touchStartY: 0,
+      mobileMenuOpen: false,
     }
   },
   mounted() {
-    // Listener para scroll
     window.addEventListener('scroll', this.handleScroll)
-
-    // Listeners para touch (mobile)
     window.addEventListener('touchstart', this.handleTouchStart, { passive: true })
     window.addEventListener('touchmove', this.handleTouchMove, { passive: true })
+    window.addEventListener('resize', this.handleResize)
   },
   beforeUnmount() {
-    // Remove os listeners ao destruir o componente
     window.removeEventListener('scroll', this.handleScroll)
     window.removeEventListener('touchstart', this.handleTouchStart)
     window.removeEventListener('touchmove', this.handleTouchMove)
+    window.removeEventListener('resize', this.handleResize)
   },
   methods: {
     handleScroll() {
       const currentScrollPosition = window.pageYOffset || document.documentElement.scrollTop
 
-      // Evita valores negativos
       if (currentScrollPosition < 0) {
         return
       }
 
-      // Sempre mostra navbar no topo da página
       if (currentScrollPosition < this.scrollThreshold) {
         this.showNavbar = true
         this.lastScrollPosition = currentScrollPosition
         return
       }
 
-      // Verifica a direção do scroll
       if (currentScrollPosition > this.lastScrollPosition) {
-        // Scrollando para baixo - esconde navbar
         this.showNavbar = false
+        this.closeMobileMenu() // Fecha o menu ao scrollar para baixo
       } else {
-        // Scrollando para cima - mostra navbar
         this.showNavbar = true
       }
 
@@ -75,25 +87,44 @@ export default {
       const touchCurrentY = event.touches[0].clientY
       const touchDiff = this.touchStartY - touchCurrentY
 
-      // Sempre mostra navbar no topo da página
       if (currentScrollPosition < this.scrollThreshold) {
         this.showNavbar = true
         return
       }
 
-      // Se o movimento for maior que um threshold (para evitar movimentos acidentais)
       if (Math.abs(touchDiff) > 10) {
         if (touchDiff > 0) {
-          // Deslizando para cima (scrollando para baixo) - esconde navbar
           this.showNavbar = false
+          this.closeMobileMenu()
         } else {
-          // Deslizando para baixo (scrollando para cima) - mostra navbar
           this.showNavbar = true
         }
 
-        // Atualiza a posição inicial para o próximo movimento
         this.touchStartY = touchCurrentY
       }
+    },
+
+    handleResize() {
+      // Fecha o menu mobile se a tela for redimensionada para desktop
+      if (window.innerWidth > 768 && this.mobileMenuOpen) {
+        this.closeMobileMenu()
+      }
+    },
+
+    toggleMobileMenu() {
+      this.mobileMenuOpen = !this.mobileMenuOpen
+
+      // Previne scroll quando o menu está aberto
+      if (this.mobileMenuOpen) {
+        document.body.style.overflow = 'hidden'
+      } else {
+        document.body.style.overflow = ''
+      }
+    },
+
+    closeMobileMenu() {
+      this.mobileMenuOpen = false
+      document.body.style.overflow = ''
     },
   },
 }
@@ -122,6 +153,7 @@ export default {
   align-items: center;
   justify-content: space-between;
   padding: 1rem 2rem;
+  position: relative;
 }
 
 .logo {
@@ -130,17 +162,61 @@ export default {
   color: var(--color-text-primary);
   text-decoration: none;
   transition: color var(--transition-base);
+  z-index: 1001;
 }
 
 .logo:hover {
   color: var(--color-primary);
 }
 
+/* Botão Hamburger */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 28px;
+  height: 21px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 1001;
+  transition: transform var(--transition-base);
+}
+
+.hamburger span {
+  width: 100%;
+  height: 3px;
+  background-color: var(--color-text-primary);
+  border-radius: 2px;
+  transition: all var(--transition-base);
+  transform-origin: center;
+}
+
+.hamburger.active span:nth-child(1) {
+  transform: translateY(9px) rotate(45deg);
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+  transform: translateX(-20px);
+}
+
+.hamburger.active span:nth-child(3) {
+  transform: translateY(-9px) rotate(-45deg);
+}
+
+.hamburger:hover span {
+  background-color: var(--color-primary);
+}
+
+/* Menu de navegação */
 .nav-links {
   display: flex;
   gap: 2rem;
   list-style: none;
   align-items: center;
+  margin: 0;
 }
 
 .nav-links a {
@@ -171,32 +247,96 @@ export default {
   width: 100%;
 }
 
-/* Responsividade */
+/* Overlay */
+.overlay {
+  display: none;
+}
+
+/* Responsividade - Tablet */
 @media (max-width: 768px) {
+  .hamburger {
+    display: flex;
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 70%;
+    max-width: 300px;
+    height: 100vh;
+    background-color: var(--color-bg-secondary);
+    flex-direction: column;
+    gap: 0;
+    align-items: flex-start;
+    padding: 5rem 2rem 2rem;
+    transform: translateX(100%);
+    transition: transform var(--transition-base);
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
+    overflow-y: auto;
+    z-index: 1001;
+  }
+
+  .nav-links.mobile-open {
+    transform: translateX(0);
+  }
+
+  .nav-links li {
+    width: 100%;
+    border-bottom: 1px solid rgba(109, 158, 235, 0.1);
+  }
+
+  .nav-links a {
+    display: block;
+    width: 100%;
+    padding: 1.25rem 0;
+    font-size: var(--text-lg);
+    color: var(--color-text-primary);
+  }
+
+  .nav-links a::after {
+    display: none;
+  }
+
+  .nav-links a:hover {
+    padding-left: 0.5rem;
+    color: var(--color-primary);
+  }
+
+  .overlay {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 999;
+    animation: fadeIn 0.3s ease;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+}
+
+/* Mobile pequeno */
+@media (max-width: 480px) {
   .navbar .container {
     padding: 1rem;
   }
 
-  .nav-links {
-    gap: 1rem;
-  }
-
-  .nav-links a {
-    font-size: var(--text-sm);
-  }
-}
-
-@media (max-width: 480px) {
-  .nav-links {
-    gap: 0.75rem;
-  }
-
-  .nav-links a {
-    font-size: var(--text-xs);
-  }
-
   .logo {
     font-size: var(--text-lg);
+  }
+
+  .nav-links {
+    width: 80%;
   }
 }
 </style>
