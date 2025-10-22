@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar" :class="{ 'navbar-hidden': !showNavbar }">
     <div class="container">
-      <a href="#hero" class="logo" @click="closeMobileMenu">Meu Portfólio</a>
+      <a href="#hero" class="logo" @click="closeMobileMenu">Case Sheet</a>
 
       <!-- Botão Hamburger (visível apenas em mobile) -->
       <button
