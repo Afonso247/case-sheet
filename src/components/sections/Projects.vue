@@ -47,7 +47,11 @@
 
       <div class="projects-cta">
         <p>Quer ver mais?</p>
-        <a href="https://github.com/Afonso247" target="_blank" class="btn btn-accent">
+        <a
+          href="https://github.com/Afonso247"
+          target="_blank"
+          class="btn btn-accent btn-no-color-change"
+        >
           Visite meu GitHub
         </a>
       </div>
@@ -233,6 +237,10 @@ export default {
   font-size: var(--text-lg);
   margin-bottom: var(--spacing-sm);
   color: var(--color-text-primary);
+}
+
+.btn-no-color-change:hover {
+  color: var(--color-bg-base);
 }
 
 /* Responsividade */
