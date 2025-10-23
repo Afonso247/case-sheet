@@ -47,7 +47,7 @@
 
       <div class="projects-cta">
         <p>Quer ver mais?</p>
-        <a href="https://github.com/seu-usuario" target="_blank" class="btn btn-accent">
+        <a href="https://github.com/Afonso247" target="_blank" class="btn btn-accent">
           Visite meu GitHub
         </a>
       </div>
@@ -58,6 +58,8 @@
 <script>
 import piPuzzle from '@/assets/images/pi_puzzle.gif'
 import reactWordle from '@/assets/images/wordle.gif'
+import mealsMuseum from '@/assets/images/meals_museum.gif'
+import oneLiners from '@/assets/images/one_liners.gif'
 
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
@@ -86,43 +88,21 @@ export default {
         },
         {
           id: 3,
-          title: 'App de Tarefas',
+          title: 'Meals Museum',
           description:
-            'Aplicativo de gerenciamento de tarefas com funcionalidades de drag-and-drop e sincronização em nuvem.',
-          image: 'https://via.placeholder.com/400x250/1C1C22/FFD966?text=Todo+App',
-          technologies: ['Vue.js', 'Vuex', 'Firebase', 'PWA'],
-          liveUrl: 'https://exemplo.com',
-          githubUrl: 'https://github.com/seu-usuario/projeto3',
+            'Aplicativo mobile de um cadápio de culinária. O app lida com navegação e gerenciamento de estado entre múltiplas telas, utilizando uma UI moderna e tematizada.',
+          image: mealsMuseum,
+          technologies: ['Flutter', 'Riverpod'],
+          githubUrl: 'https://github.com/Afonso247/meals-museum',
         },
         {
           id: 4,
-          title: 'Rede Social',
+          title: 'One Liners',
           description:
-            'Plataforma social com feed de posts, sistema de likes, comentários e chat em tempo real.',
-          image: 'https://via.placeholder.com/400x250/1C1C22/6D9EEB?text=Social+Network',
-          technologies: ['React', 'Socket.io', 'PostgreSQL', 'Redis'],
-          liveUrl: 'https://exemplo.com',
-          githubUrl: 'https://github.com/seu-usuario/projeto4',
-        },
-        {
-          id: 5,
-          title: 'API RESTful',
-          description:
-            'API completa com autenticação JWT, documentação Swagger e testes automatizados.',
-          image: 'https://via.placeholder.com/400x250/1C1C22/C27BA0?text=REST+API',
-          technologies: ['Node.js', 'Express', 'JWT', 'Swagger'],
-          liveUrl: null,
-          githubUrl: 'https://github.com/seu-usuario/projeto5',
-        },
-        {
-          id: 6,
-          title: 'Landing Page',
-          description:
-            'Landing page responsiva e animada para produto SaaS com otimização SEO e performance.',
-          image: 'https://via.placeholder.com/400x250/1C1C22/FFD966?text=Landing+Page',
-          technologies: ['HTML', 'CSS', 'JavaScript', 'GSAP'],
-          liveUrl: 'https://exemplo.com',
-          githubUrl: 'https://github.com/seu-usuario/projeto6',
+            'Plataforma social com sistema de autenticação, lista de conversas com outros usuários, e envio de mensagens em tempo real.',
+          image: oneLiners,
+          technologies: ['Flutter', 'Firebase'],
+          githubUrl: 'https://github.com/Afonso247/one-liners',
         },
       ],
     }
