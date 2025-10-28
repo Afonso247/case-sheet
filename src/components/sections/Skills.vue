@@ -82,11 +82,19 @@
       <div class="certifications">
         <h3 class="certifications-title">Certificações</h3>
         <div class="badges-grid">
-          <div class="badge-item" v-for="cert in certifications" :key="cert.name">
+          <a
+            v-for="cert in certifications"
+            :key="cert.name"
+            :href="cert.link"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="badge-item"
+          >
             <div class="badge-icon">🏆</div>
             <span class="badge-name">{{ cert.name }}</span>
             <span class="badge-year">{{ cert.year }}</span>
-          </div>
+            <span class="badge-view">Ver certificado →</span>
+          </a>
         </div>
       </div>
     </div>
@@ -102,7 +110,8 @@ export default {
       frontendSkills: [
         { name: 'HTML/CSS', level: 90 },
         { name: 'JavaScript', level: 80 },
-        { name: 'Vue.js', level: 75 },
+        { name: 'Vue.js', level: 80 },
+        { name: 'Flutter', level: 70 },
         { name: 'React', level: 50 },
       ],
       backendSkills: [
@@ -124,11 +133,19 @@ export default {
         { name: 'Trabalho em Equipe', level: 90 },
         { name: 'Adaptabilidade', level: 85 },
         { name: 'Gestão de Tempo', level: 85 },
+        { name: 'English', level: 70 },
       ],
       certifications: [
-        { name: 'AWS Certified Developer', year: '2024' },
-        { name: 'Vue.js Certification', year: '2023' },
-        { name: 'Scrum Master', year: '2023' },
+        {
+          name: 'Certificado de Monitoria',
+          year: '2022',
+          link: 'https://drive.google.com/file/d/118kd5dRY7Vukq_srwZbHBBWuXvz2818x/view',
+        },
+        {
+          name: 'Certificate of Completion - Flutter & Dart',
+          year: '2025',
+          link: 'https://drive.google.com/file/d/1Qg8KRmUxRtROgL1dtuaaxp3X3sBan3rC/view?usp=sharing',
+        },
       ],
     }
   },
