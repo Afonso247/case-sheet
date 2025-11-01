@@ -3,7 +3,7 @@
     <div class="container">
       <div class="about-content">
         <div class="about-text">
-          <h2 class="fade-in">Sobre <span class="text-gradient">Mim</span></h2>
+          <h2 class="text-primary">Sobre Mim</h2>
           <p class="lead">
             Olá! Sou um desenvolvedor apaixonado por criar soluções digitais incríveis.
           </p>

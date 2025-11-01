@@ -4,8 +4,7 @@
       <div class="contact-content">
         <!-- Header -->
         <div class="contact-header">
-          <h2 class="text-gradient fade-in">Entre em Contato</h2>
-          <div class="underline"></div>
+          <h2 class="text-primary fade-in">Entre em Contato</h2>
           <p class="contact-subtitle">
             Tem um projeto em mente ou quer apenas trocar uma ideia? Ficarei feliz em conversar com
             você!
@@ -184,7 +183,7 @@
                 ></textarea>
               </div>
 
-              <button type="submit" class="btn btn-accent submit-btn">
+              <button type="submit" class="btn btn-secondary submit-btn">
                 <span v-if="!isSubmitting">Enviar Mensagem</span>
                 <span v-else>Enviando...</span>
               </button>
@@ -395,7 +394,7 @@ export default {
   width: 48px;
   height: 48px;
   min-width: 48px;
-  background: var(--gradient-primary);
+  background: var(--color-secondary);
   border-radius: var(--radius-md);
   display: flex;
   align-items: center;

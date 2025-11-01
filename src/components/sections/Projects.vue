@@ -2,7 +2,7 @@
   <section id="projects" class="projects">
     <div class="container">
       <div class="section-header">
-        <h2 class="text-gradient">Meus Projetos</h2>
+        <h2 class="text-primary">Meus Projetos</h2>
         <p class="section-subtitle">Confira alguns dos meus trabalhos mais recentes</p>
       </div>
 
@@ -50,7 +50,7 @@
         <a
           href="https://github.com/Afonso247"
           target="_blank"
-          class="btn btn-accent btn-no-color-change"
+          class="btn btn-secondary btn-no-color-change"
         >
           Visite meu GitHub
         </a>

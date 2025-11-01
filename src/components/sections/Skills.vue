@@ -2,9 +2,9 @@
   <section id="skills" class="skills">
     <div class="container">
       <div class="skills-header">
-        <h2 class="text-gradient">Minhas Habilidades</h2>
+        <h2 class="text-primary">Minhas Habilidades</h2>
         <p class="skills-subtitle">
-          Tecnologias e ferramentas que domino para criar soluções incríveis
+          Tecnologias e ferramentas que utilizo para criar minhas soluções digitais.
         </p>
       </div>
 

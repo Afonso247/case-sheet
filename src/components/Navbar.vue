@@ -228,17 +228,6 @@ export default {
   transition: color var(--transition-base);
 }
 
-.nav-links a::after {
-  content: '';
-  position: absolute;
-  bottom: -5px;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: var(--gradient-primary);
-  transition: width var(--transition-base);
-}
-
 .nav-links a:hover {
   color: var(--color-primary);
 }
