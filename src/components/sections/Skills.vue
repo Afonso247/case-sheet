@@ -4,7 +4,8 @@
       <div class="skills-header">
         <h2 class="text-primary">Minhas Habilidades</h2>
         <p class="skills-subtitle">
-          Tecnologias e ferramentas que utilizo para criar minhas soluções digitais.
+          Abaixo você encontrará algumas das ferramentas e tecnologias com as quais trabalho
+          profissionalmente.
         </p>
       </div>
 
@@ -15,12 +16,9 @@
           <h3>Frontend</h3>
           <div class="skills-list">
             <div class="skill-item" v-for="skill in frontendSkills" :key="skill.name">
-              <div class="skill-info">
+              <div class="skill-content">
                 <span class="skill-name">{{ skill.name }}</span>
-                <span class="skill-level">{{ skill.level }}%</span>
-              </div>
-              <div class="skill-bar">
-                <div class="skill-progress" :style="{ width: skill.level + '%' }"></div>
+                <span class="skill-experience">{{ skill.experience }}</span>
               </div>
             </div>
           </div>
@@ -32,12 +30,9 @@
           <h3>Backend</h3>
           <div class="skills-list">
             <div class="skill-item" v-for="skill in backendSkills" :key="skill.name">
-              <div class="skill-info">
+              <div class="skill-content">
                 <span class="skill-name">{{ skill.name }}</span>
-                <span class="skill-level">{{ skill.level }}%</span>
-              </div>
-              <div class="skill-bar">
-                <div class="skill-progress" :style="{ width: skill.level + '%' }"></div>
+                <span class="skill-experience">{{ skill.experience }}</span>
               </div>
             </div>
           </div>
@@ -49,36 +44,16 @@
           <h3>Ferramentas</h3>
           <div class="skills-list">
             <div class="skill-item" v-for="skill in toolsSkills" :key="skill.name">
-              <div class="skill-info">
+              <div class="skill-content">
                 <span class="skill-name">{{ skill.name }}</span>
-                <span class="skill-level">{{ skill.level }}%</span>
-              </div>
-              <div class="skill-bar">
-                <div class="skill-progress" :style="{ width: skill.level + '%' }"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Soft Skills -->
-        <div class="skill-category">
-          <div class="category-icon">🎯</div>
-          <h3>Soft Skills</h3>
-          <div class="skills-list">
-            <div class="skill-item" v-for="skill in softSkills" :key="skill.name">
-              <div class="skill-info">
-                <span class="skill-name">{{ skill.name }}</span>
-                <span class="skill-level">{{ skill.level }}%</span>
-              </div>
-              <div class="skill-bar">
-                <div class="skill-progress" :style="{ width: skill.level + '%' }"></div>
+                <span class="skill-experience">{{ skill.experience }}</span>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Badges de certificações (opcional) -->
+      <!-- Badges de certificações -->
       <div class="certifications">
         <h3 class="certifications-title">Certificações</h3>
         <div class="badges-grid">
@@ -108,32 +83,24 @@ export default {
   data() {
     return {
       frontendSkills: [
-        { name: 'HTML/CSS', level: 90 },
-        { name: 'JavaScript', level: 80 },
-        { name: 'Vue.js', level: 80 },
-        { name: 'Flutter', level: 70 },
-        { name: 'React', level: 50 },
+        { name: 'JavaScript', experience: '2 anos' },
+        { name: 'Vue.js', experience: '2 anos' },
+        { name: 'Flutter', experience: 'Acadêmico' },
+        { name: 'React', experience: 'Acadêmico' },
+        { name: 'Svelte', experience: 'Acadêmico' },
       ],
       backendSkills: [
-        { name: 'Node.js', level: 85 },
-        { name: 'MongoDB', level: 70 },
-        { name: 'C#', level: 50 },
-        { name: 'PHP', level: 50 },
-        { name: 'SQL', level: 50 },
+        { name: 'Node.js', experience: '2 anos' },
+        { name: 'MongoDB', experience: '2 anos' },
+        { name: 'SQL', experience: '8 meses' },
+        { name: 'C#', experience: '6 meses' },
+        { name: 'PHP', experience: 'Acadêmico' },
       ],
       toolsSkills: [
-        { name: 'VS Code', level: 95 },
-        { name: 'Git/GitHub', level: 90 },
-        { name: 'Docker', level: 50 },
-        { name: 'Figma', level: 50 },
-      ],
-      softSkills: [
-        { name: 'Comunicação', level: 95 },
-        { name: 'Resolução de Problemas', level: 95 },
-        { name: 'Trabalho em Equipe', level: 90 },
-        { name: 'Adaptabilidade', level: 85 },
-        { name: 'Gestão de Tempo', level: 85 },
-        { name: 'English', level: 70 },
+        { name: 'Git/GitHub', experience: '2 anos' },
+        { name: 'Figma', experience: '6 meses' },
+        { name: 'Docker', experience: 'Acadêmico' },
+        { name: 'English', experience: 'Intermediário' },
       ],
       certifications: [
         {
@@ -210,61 +177,39 @@ export default {
 }
 
 .skill-item {
-  margin-bottom: var(--spacing-xs);
+  background-color: rgba(109, 158, 235, 0.05);
+  padding: var(--spacing-sm);
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(109, 158, 235, 0.1);
+  transition: all var(--transition-base);
 }
 
-.skill-info {
+.skill-item:hover {
+  background-color: rgba(109, 158, 235, 0.1);
+  border-color: var(--color-primary);
+  transform: translateX(5px);
+}
+
+.skill-content {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 0.5rem;
+  align-items: center;
 }
 
 .skill-name {
   color: var(--color-text-primary);
-  font-weight: 500;
-  font-size: var(--text-sm);
+  font-weight: 600;
+  font-size: var(--text-base);
 }
 
-.skill-level {
+.skill-experience {
   color: var(--color-accent);
   font-weight: 600;
   font-size: var(--text-sm);
-}
-
-.skill-bar {
-  height: 8px;
-  background-color: var(--color-bg-base);
+  padding: 0.25rem 0.75rem;
+  background-color: rgba(255, 217, 102, 0.1);
   border-radius: var(--radius-full);
-  overflow: hidden;
-  position: relative;
-}
-
-.skill-progress {
-  height: 100%;
-  background: var(--gradient-primary);
-  border-radius: var(--radius-full);
-  transition: width 1s ease-out;
-  position: relative;
-}
-
-.skill-progress::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-  animation: shimmer 2s infinite;
-}
-
-@keyframes shimmer {
-  0% {
-    transform: translateX(-100%);
-  }
-  100% {
-    transform: translateX(100%);
-  }
+  white-space: nowrap;
 }
 
 /* Certificações */
@@ -280,9 +225,9 @@ export default {
 
 .badges-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: var(--spacing-md);
-  max-width: 800px;
+  max-width: 900px;
   margin: 0 auto;
 }
 
@@ -296,11 +241,13 @@ export default {
   align-items: center;
   gap: 0.5rem;
   transition: all var(--transition-base);
+  text-decoration: none;
 }
 
 .badge-item:hover {
   transform: scale(1.05);
   box-shadow: 0 0 20px rgba(255, 217, 102, 0.3);
+  border-color: var(--color-secondary);
 }
 
 .badge-icon {
@@ -312,12 +259,25 @@ export default {
   font-weight: 600;
   text-align: center;
   font-size: var(--text-sm);
+  line-height: 1.4;
 }
 
 .badge-year {
   color: var(--color-accent);
   font-size: var(--text-xs);
   font-weight: 500;
+}
+
+.badge-view {
+  color: var(--color-primary);
+  font-size: var(--text-xs);
+  margin-top: 0.25rem;
+  opacity: 0;
+  transition: opacity var(--transition-base);
+}
+
+.badge-item:hover .badge-view {
+  opacity: 1;
 }
 
 /* Responsividade */
@@ -332,6 +292,16 @@ export default {
 
   .badges-grid {
     grid-template-columns: 1fr;
+  }
+
+  .skill-content {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .skill-experience {
+    align-self: flex-end;
   }
 }
 </style>
