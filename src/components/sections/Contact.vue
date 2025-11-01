@@ -17,7 +17,7 @@
           <!-- Informações de Contato -->
           <div class="contact-info slide-in-left">
             <div class="info-card card">
-              <h3>Converse comigo</h3>
+              <h3>Entre em contato</h3>
               <p>Estou sempre aberto a discutir novos projetos, ideias ou oportunidades!</p>
 
               <div class="contact-methods">
@@ -251,25 +251,54 @@ export default {
       this.isSubmitting = true
       this.submitMessage = ''
 
-      // Simula envio (substitua pela sua lógica de envio real)
-      setTimeout(() => {
-        this.isSubmitting = false
-        this.submitStatus = 'success'
-        this.submitMessage = 'Mensagem enviada com sucesso! Entrarei em contato em breve.'
+      try {
+        // Envia o email usando EmailJS
+        const response = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            service_id: import.meta.env.VITE_EMAILJS_SERVICE_ID,
+            template_id: import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+            user_id: import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
+            template_params: {
+              from_name: this.formData.name,
+              from_email: this.formData.email,
+              subject: this.formData.subject,
+              message: this.formData.message,
+              to_email: 'afonsoh.dev@gmail.com',
+            },
+          }),
+        })
 
-        // Limpa o formulário
-        this.formData = {
-          name: '',
-          email: '',
-          subject: '',
-          message: '',
+        if (response.ok) {
+          this.submitStatus = 'success'
+          this.submitMessage = 'Mensagem enviada com sucesso! Entrarei em contato em breve.'
+
+          // Limpa o formulário
+          this.formData = {
+            name: '',
+            email: '',
+            subject: '',
+            message: '',
+          }
+        } else {
+          throw new Error('Erro ao enviar mensagem')
         }
+      } catch (error) {
+        console.error('Erro:', error)
+        this.submitStatus = 'error'
+        this.submitMessage =
+          'Ops! Algo deu errado. Tente novamente ou entre em contato diretamente.'
+      } finally {
+        this.isSubmitting = false
 
         // Limpa a mensagem após 5 segundos
         setTimeout(() => {
           this.submitMessage = ''
         }, 5000)
-      }, 2000)
+      }
     },
   },
 }
