@@ -41,14 +41,13 @@
         </div>
 
         <div class="about-image">
-          <div class="image-wrapper">
-            <!-- Substitua o src pela sua foto -->
+          <!-- <div class="image-wrapper">
             <img
               src="https://via.placeholder.com/400x500/1C1C22/6D9EEB?text=Sua+Foto"
               alt="Seu Nome"
             />
             <div class="image-overlay"></div>
-          </div>
+          </div> -->
 
           <div class="tech-stack">
             <div class="tech-item" title="JavaScript">
@@ -88,6 +87,14 @@
               />
             </div>
           </div>
+
+          <a
+            href="https://drive.google.com/file/d/1l7pkpYEIEc3H98Si0-g1oTY4CeofC52e/view?usp=sharing"
+            target="_blank"
+            class="btn btn-secondary about-btn"
+            download
+            >Obter Currículo</a
+          >
         </div>
       </div>
     </div>
@@ -156,6 +163,11 @@ export default {
 
 .about-image {
   position: relative;
+  text-align: center;
+}
+
+.about-btn {
+  margin-top: var(--spacing-md);
 }
 
 .image-wrapper {
