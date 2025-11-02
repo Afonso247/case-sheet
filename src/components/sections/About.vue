@@ -243,10 +243,7 @@ export default {
   .about-content {
     grid-template-columns: 1fr;
     gap: var(--spacing-md);
-  }
-
-  .about-image {
-    order: -1;
+    text-align: center;
   }
 
   .about-stats {
